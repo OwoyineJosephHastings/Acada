@@ -26,11 +26,16 @@
         console.log(email )
         promise.then(e=>{
             
-            alert("Signed " + email + " successfully")
-            window.location ="register.html";
+            
+            window.location ="https://alternativepath.github.io/";
     })
 
       }
 
       var signinbtn = document.getElementById("signin");
+      var signupbtn =document.getElementById("signup");
       signinbtn.addEventListener("click",signin);
+      signupbtn.addEventListener("click",function(){
+        window.location="register.html";
+      });
+      
