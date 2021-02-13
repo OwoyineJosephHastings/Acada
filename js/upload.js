@@ -12,7 +12,7 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 // --------- firebase auth--------------
-const storageRef = firebase.storage().ref("Mec4101/past papers/exams.pdf");
+const storageRef = firebase.storage().ref("Mec4101/past papers/exams2.pdf");
 
 var submitbtn = document.getElementById("submit_btn");
 var input = document.querySelector("input");
@@ -45,10 +45,16 @@ submitbtn.addEventListener("click", function () {
       // For instance, get the download URL: https://firebasestorage.googleapis.com/...
       uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
         console.log("File available at", downloadURL);
-        var promise = firebase.database().ref("Mec4101/past papers").set({
-          name: "exams.pdf",
-          download_link: downloadURL,
-        });
+        var promise = firebase
+          .database()
+          .ref(
+            "university/makerere/cedat/school of engineering/mechanical engineering/year4/semsester2/mec4201/pastpapers"
+          )
+          .set({
+            name: "exams.pdf",
+            download_link: downloadURL,
+          });
+
         promise.catch((e) => {
           console.log(e.message());
         });
