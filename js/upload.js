@@ -1,4 +1,11 @@
 // ----------firebase initialise-----------------
+var submitbtn = document.getElementById("submit_btn");
+var input = document.querySelector("input");
+var progress_value = document.getElementById("progress-bar");
+var semester = document.getElementById("semester").value;
+var year = document.getElementById("year").value;
+var document_type = document.getElementById("document_type").value;
+var course_code = document.getElementById("course_code").value;
 
 var firebaseConfig = {
   apiKey: "AIzaSyDzcaQsMg9-3vSzg8ekuOxdMg9OuG_oEzo",
@@ -20,18 +27,9 @@ const storageRef = firebase
       "/" +
       semester +
       "/" +
-      course_code +
-      "/" +
-      document_type
+      document_type +
+      "/paper.pdf"
   );
-
-var submitbtn = document.getElementById("submit_btn");
-var input = document.querySelector("input");
-var progress_value = document.getElementById("progress-bar");
-var semester = document.getElementById("semester").value;
-var year = document.getElementById("year").value;
-var document_type = document.getElementById("document_type").value;
-var course_code = document.getElementById("course_code").value;
 
 submitbtn.addEventListener("click", function () {
   var uploadTask = storageRef.put(input.files[0]);
@@ -64,7 +62,14 @@ submitbtn.addEventListener("click", function () {
         var promise = firebase
           .database()
           .ref(
-            "university/makerere/cedat/school of engineering/mechanical engineering/year4/semsester2/mec4201/pastpapers"
+            "university/makerere/cedat/school of engineering/mechanical engineering/" +
+              year +
+              "/" +
+              semester +
+              "/" +
+              course_code +
+              "/" +
+              document_type
           )
           .set({
             name: "exams.pdf",
