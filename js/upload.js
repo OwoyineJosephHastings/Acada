@@ -12,13 +12,28 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 // --------- firebase auth--------------
-const storageRef = firebase.storage().ref("Mec4101/past papers/exams2.pdf");
+const storageRef = firebase
+  .storage()
+  .ref(
+    "university/makerere/cedat/school of engineering/mechanical engineering/" +
+      year +
+      "/" +
+      semester +
+      "/" +
+      course_code +
+      "/" +
+      document_type
+  );
 
 var submitbtn = document.getElementById("submit_btn");
 var input = document.querySelector("input");
+var progress_value = document.getElementById("progress-bar");
+var semester = document.getElementById("semester").value;
+var year = document.getElementById("year").value;
+var document_type = document.getElementById("document_type").value;
+var course_code = document.getElementById("course_code").value;
 
 submitbtn.addEventListener("click", function () {
-  console.log(input.files[0]);
   var uploadTask = storageRef.put(input.files[0]);
   uploadTask.on(
     "state_changed",
@@ -26,7 +41,8 @@ submitbtn.addEventListener("click", function () {
       // Observe state change events such as progress, pause, and resume
       // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
       var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-      console.log("Upload is " + progress + "% done");
+      progress_value.style.width = progress.toString() + "%";
+      progress_value.innerHTML = Math.round(progress).toString() + "%";
       switch (snapshot.state) {
         case firebase.storage.TaskState.PAUSED: // or 'paused'
           console.log("Upload is paused");
