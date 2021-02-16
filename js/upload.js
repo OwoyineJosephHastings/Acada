@@ -18,20 +18,26 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
-// --------- firebase auth--------------
-const storageRef = firebase
-  .storage()
-  .ref(
-    "university/makerere/cedat/school of engineering/mechanical engineering/" +
-      year +
-      "/" +
-      semester +
-      "/" +
-      document_type +
-      "/paper.pdf"
-  );
+// --------- firebase authorisation--------------
 
 submitbtn.addEventListener("click", function () {
+  input = document.querySelector("input");
+
+  const storageRef = firebase
+    .storage()
+    .ref(
+      "university/makerere/cedat/school of engineering/mechanical engineering/" +
+        year +
+        "/" +
+        semester +
+        "/" +
+        course_code +
+        "/" +
+        document_type +
+        "/" +
+        input.files[0].name
+    );
+
   var uploadTask = storageRef.put(input.files[0]);
   uploadTask.on(
     "state_changed",
@@ -52,7 +58,7 @@ submitbtn.addEventListener("click", function () {
     },
     (error) => {
       // Handle unsuccessful uploads
-      console.log("error occurred during upload");
+      alert("error occurred during upload");
     },
     () => {
       // Handle successful uploads on complete
@@ -72,7 +78,7 @@ submitbtn.addEventListener("click", function () {
               document_type
           )
           .set({
-            name: "exams.pdf",
+            name: input.files[0].name,
             download_link: downloadURL,
           });
 
