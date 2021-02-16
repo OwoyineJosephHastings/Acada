@@ -14,13 +14,14 @@
     <link rel="stylesheet" href="css/upload.css">
 </head>
 <body >
-    <h1> Upload A Past Paper </h1>
+  <h1>ADMIN</h1>
+    <h2>UPLOAD RESOURCES </h2>
     <fieldset>
         <Legend>
-        Category
+        Document Location
         </Legend>
         <form  >
-            <div class="select_container">
+            <div class="form-group">
                <label for="select_year">Year:</label>
                 <select name="select_year" id="year"> 
                   <option>year 1</option>
@@ -30,7 +31,7 @@
                 </select>
               </div>
 
-              <div class="select_container">
+              <div class="form-group">
                 <label for="select_semester">Semester:</label>
                  <select name="select_semester" id="semester"> 
                    <option>Semester 1</option>
@@ -38,68 +39,115 @@
                    
                  </select>
                </div>
-               <div class="select_container">
+               <div class="form-group">
                 <label for="select_course_code">Course Code:</label>
-                 <select name="select_course_code" id="course_code"> 
-                    <optgroup label="Year 1">
-                        <option>mec4101</option>
-                        <option>mec4102</option>
-                        <option>mec4103</option>
-                        <option>mec4104</option>
-                        <option>mec4105</option>
-                        <option>mec4106</option>
-                        <option>mec4107</option>
+                 <select name="select_course_code" id="course_code" > 
+                    <optgroup label="YEAR ONE">
+                        <optgroup label="SEMESTER ONE">
+                        <option>EMT1101</option>
+                        <option>TEC1101</option>
+                        <option>MEC1101</option>
+                        <option>MEC1102</option>
+                        <option>MEC1103</option>
+                        </optgroup>
+                        <optgroup label="SEMESTER TWO">
+                          <option>EMT1201</option>
+                          <option>EMT1204</option>
+                          <option>MEC1202</option>
+                          <option>MEC1203</option>
+                          <option>MEC1204</option>
+                        </optgroup>
                      </optgroup>
-                     <optgroup label="Year 2">
-                        <option>mec4101</option>
-                        <option>mec4102</option>
-                        <option>mec4103</option>
-                        <option>mec4104</option>
-                        <option>mec4105</option>
-                        <option>mec4106</option>
-                        <option>mec4107</option>
+                     <optgroup label="YEAR TWO">
+                      <optgroup label="SEMESTER ONE">
+                        <option>EMT2101</option>
+                        <option>TEC2101</option>
+                        <option>MEC2101</option>
+                        <option>MEC2102</option>
+                        <option>MEC2103</option>
+                        </optgroup>
+                        <optgroup label="SEMESTER TWO">
+                          <option>MEC2201</option>
+                          <option>MEC2202</option>
+                          <option>MEC2203</option>
+                          <option>MEC2204</option>
+                          <option>MEC2205</option>
+                        </optgroup>
+                        </optgroup>
+
+                     <optgroup label="YEAR THREE">
+                      <optgroup label="SEMESTER ONE">
+                        <option>MEC3101</option>
+                        <option>MEC3102</option>
+                        <option>MEC3103</option>
+                        <option>MEC3104</option>
+                        <option>MEC3105</option>
+                        </optgroup>
+                        <optgroup label="SEMESTER TWO">
+                          <option>MEC3201</option>
+                          <option>MEC3202</option>
+                          <option>MEC3203</option>
+                          <option>MEC3204</option>
+                          <option>MEC3205</option>
+                        </optgroup>
                      </optgroup>
-                     <optgroup label="Year 3">
-                        <option>mec4101</option>
-                        <option>mec4102</option>
-                        <option>mec4103</option>
-                        <option>mec4104</option>
-                        <option>mec4105</option>
-                        <option>mec4106</option>
-                        <option>mec4107</option>
+                     <optgroup label="YEAR FOUR">
+                      <optgroup label="SEMESTER ONE">
+                        <option>MEC4101</option>
+                        <option>MEC4102</option>
+                        <option>MEC4103</option>
+                        <option>MEC4104</option>
+                        <option>MEC4105</option>
+                        <option>MEC4106</option>
+                        <option>MEC4107</option>
+                        </optgroup>
+                        <optgroup label="SEMESTER TWO">
+                          <option>mec4201</option>
+                          <option>mec4202</option>
+                          <option>mec4203</option>
+                          <option>mec4204</option>
+                          <option>mec4205</option>
+                          <option>mec4206</option>
+                          <option>mec4207</option>
+                          <option>MEC4208</option>
+                          <option>MEC4209</option>
+                        </optgroup>
+                        
                      </optgroup>
-                     <optgroup label="Year 4">
-                        <option>mec4101</option>
-                        <option>mec4102</option>
-                        <option>mec4103</option>
-                        <option>mec4104</option>
-                        <option>mec4105</option>
-                        <option>mec4106</option>
-                        <option>mec4107</option>
-                     </optgroup>
+                     
                  </select>
                  
                </div>
-               <div class="select_container">
+               <div class="form-group">
                 <label for="document_type">Category</label>
                 <select name="document_type" id="document_type">
-                    <option >Past paper</option>
+                    <option >Lecture Notes</option>
                     <option >Test</option>
                     <option >Assignments</option>
                     <option >Project Report</option>
                 </select>
+                </div>
+                                
              </div>
              
         </form>
         
-    </fieldset>
-    <div class="form-group">
-        <input type="file" id="file_input">
-        <div class="progress">
+        <div class="form-group">
+         <input type="text" placeholder="Enter File Name" class="form-control" id="file_name" required>
+                
+        </div>
+        <br>
+        <div class="form-group">
+          <input type="file" id="file_input" class="form-control">
+          <div class="progress">
             <div id="progress-bar" class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
         <button type="submit" id="submit_btn"> Up load</button>
-    </div>
+      </div>
+         
+        
+    </fieldset>
+    
 
     <script src="js/upload.js"></script>
 </body>
