@@ -13,14 +13,7 @@ firebase.initializeApp(firebaseConfig);
 var loadbtn = document.getElementById("submit");
 let resourceDocs = [];
 var $htmlWrapper = document.querySelector("#resoures");
-var htmlTemplate = `<div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="resorces/images/pdf icon.png" alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title">Control Systems Engineering</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="" class="btn btn-primary">Go To course</a>
-  </div>
-</div>`;
+var htmlTemplate = ``;
 
 function loadNotes() {
   var year = document.getElementById("year").value;
@@ -41,13 +34,19 @@ function loadNotes() {
         resource
     );
 
-  storageRef.once("value", (snapshot) => {
-    snapshot.forEach((childSnapshot) => {
-      var childKey = childSnapshot.key;
-      var childData = childSnapshot.val();
-      resourceDocs.push(childData);
+  storageRef
+    .once("value", (snapshot) => {
+      snapshot.forEach((childSnapshot) => {
+        var childKey = childSnapshot.key;
+        var childData = childSnapshot.val();
+        resourceDocs.push(childData);
+      });
+      console.log(resourceDocs);
+    })
+    .then((e) => {
+      showNotes(resourceDocs);
+      loadbtn.removeAttribute("disabled");
     });
-  });
 }
 
 function showNotes(resourceDocs) {
@@ -58,13 +57,14 @@ function showNotes(resourceDocs) {
   var semester = document.getElementById("semester").value;
   var resource = document.getElementById("resource_type").value;
   var course_code = document.getElementById("course_code").value;
-
+  htmlTemplate = ``;
+  $htmlWrapper.innerHTML = ``;
   resourceDocs.forEach((resourceDoc) => {
     htmlTemplate += `<div class="card" style="width: 18rem;">
     <img class="card-img-top" width="50rem" height="70rem" src="resorces/images/PDF_file_icon.svg" alt="Card image cap">
     <div class="card-body">
       <h5 class="card-title">${
-        year + ">" + semester + ">" + course_code + ">" + resource
+        year + "," + semester + "," + course_code + "," + resource
       }</h5>
       <p class="card-text">${resourceDoc.name}</p>
       <a href="${
@@ -73,12 +73,15 @@ function showNotes(resourceDocs) {
     </div>
   </div>`;
   });
+
   $htmlWrapper.innerHTML = htmlTemplate;
-  resourceDocs = [];
 }
 
 loadbtn.addEventListener("click", (e) => {
+  loadbtn.setAttribute("disabled", "disabled");
+  resourceDocs = [];
   e.preventDefault();
   loadNotes();
-  showNotes(resourceDocs);
+
+  //showNotes(resourceDocs);
 });

@@ -25,7 +25,6 @@ submitbtn.addEventListener("click", function () {
   var file_name = document.getElementById("file_name").value;
 
   if (file_name !== "") {
-    submitbtn.attributes("disabled") = "disabled";
     const storageRef = firebase
       .storage()
       .ref(
@@ -55,20 +54,17 @@ submitbtn.addEventListener("click", function () {
             alert("Upload is paused");
             break;
           case firebase.storage.TaskState.RUNNING: // or 'running'
-            submitbtn.SetAttribute("disabled") = "disabled";
             // do something while upload state running
             break;
         }
       },
       (error) => {
         alert("error occurred during upload");
-        submitbtn.SetAttribute("disabled") = "false";
       },
       () => {
         // Handle successful uploads on complete
         // For instance, get the download URL: https://firebasestorage.googleapis.com/...
         uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
-          console.log("File available at", downloadURL);
           var promise = firebase
             .database()
             .ref(
@@ -92,14 +88,12 @@ submitbtn.addEventListener("click", function () {
 
           promise.catch((e) => {
             alert(e.message());
-            submitbtn.SetAttribute("disabled") = "false";
           });
           promise.then((e) => {
             // successful upload to the database
             alert("Successfully Uploaded \n Thank you!");
             progress_value.style.width = "0%";
             progress_value.innerHTML = "";
-            submitbtn.SetAttribute("disabled") = "false";
           });
         });
       }
@@ -108,6 +102,5 @@ submitbtn.addEventListener("click", function () {
     alert(
       "please fill in the name of the of the file without punctuation marks and keep it short and simple "
     );
-    submitbtn.SetAttribute("disabled") = "false";
   }
 });
