@@ -5,40 +5,49 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="login.css">
+    
     <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-auth.js"></script>
-    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>ACADA - signin</title>
 </head>
 <body>
-    
-    <div id="id01" class="modal">
-  
-        <div>
-          <div class="imgcontainer">
+ 
+          <div class="img-container">
            
-            <img src="resorces\images\home images.jpg" alt="Avatar" class="avatar">
+            <img src="resorces\images\logo.png" alt="Avatar" class="ounded mx-auto d-block">
           </div>
-      
-          <div class="container">
-            <label for="uname"><b>Username</b></label>
-            <input type="text" id="email" placeholder="Enter email" name="uname" required>
-      
-            <label for="psw"><b>Password</b></label>
-            <input type="password" id="password" placeholder="Enter Password" name="psw" required>
-              
-            <button id="signin">Login</button>
+      <fieldset class="fieldset" style="margin: 13%;">
+        <legend>ACADA LOGIN</legend>
+        
+        <form class="form">
+          <div class="form-group">	
+            <label class="label" for="email_login">Email </label><i class="mtrl-select"></i>
+            <input type="email" class="form-control" id="email_login" required="required" placeholder="example@gmail.com"/>
+            
+          </div>
+          <div class="form-group">	
+            <label class="label" for="input">Password</label><i class="mtrl-select"></i>
+            <input type="password" class="form-control" id="password_login" required placeholder="Enter Your Pass word">
+            
+          </div>
+          <div class="for-group">
             <label>
-              <input type="checkbox" checked="checked" name="remember"> Remember me
+            <input type="checkbox" checked/><i class="check-box"></i>Remember Me
             </label>
           </div>
-      
-          <div class="container" style="background-color:#f1f1f1">
-            <button type="button" id="cancle"  class="cancelbtn">Cancel</button>
-            <span class="psw">Forgot <a href="#">password?</a></span>
+          <a href="#" title="" class="forgot-pwd">Forgot Password?</a>
+          <div class="for-group" style="display: flex; justify-content:left;gap: 1rem;">
+            <button class="btn-primary" id="signin" ><span>Sign in</span></button>
+            <button class="btn-success" id="signup" ><span>sign up</span></button>
+            <button  id="cancle"  class="btn btn-danger">Cancel</button>
           </div>
-        </div>
-      </div>
+        </form>
+      </fieldset>
+      
+         
+        
+      
 <script src="js/login.js"></script>
 </body>
 </html>

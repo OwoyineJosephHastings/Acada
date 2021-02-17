@@ -45,17 +45,40 @@ function loadNotes() {
     snapshot.forEach((childSnapshot) => {
       var childKey = childSnapshot.key;
       var childData = childSnapshot.val();
-      console.log(
-        childData.name,
-        "\n download link = ",
-        childData.download_link
-      );
+      resourceDocs.push(childData);
     });
   });
 }
 
+function showNotes(resourceDocs) {
+  htmlTemplate = "";
+  $htmlWrapper.innerHTML = "";
+
+  var year = document.getElementById("year").value;
+  var semester = document.getElementById("semester").value;
+  var resource = document.getElementById("resource_type").value;
+  var course_code = document.getElementById("course_code").value;
+
+  resourceDocs.forEach((resourceDoc) => {
+    htmlTemplate += `<div class="card" style="width: 18rem;">
+    <img class="card-img-top" width="50rem" height="70rem" src="resorces/images/PDF_file_icon.svg" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">${
+        year + ">" + semester + ">" + course_code + ">" + resource
+      }</h5>
+      <p class="card-text">${resourceDoc.name}</p>
+      <a href="${
+        resourceDoc.download_link
+      }" class="btn btn-primary">Download</a>
+    </div>
+  </div>`;
+  });
+  $htmlWrapper.innerHTML = htmlTemplate;
+  resourceDocs = [];
+}
+
 loadbtn.addEventListener("click", (e) => {
   e.preventDefault();
-
   loadNotes();
+  showNotes(resourceDocs);
 });
