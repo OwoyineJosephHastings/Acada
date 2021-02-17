@@ -9,67 +9,73 @@
     <meta name="keywords" content="" />
 	<title>Acade-Home Page</title>
     <link rel="icon" href="resorces\images\logo.jpg" type="image/png" sizes="16x16"> 
-    
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/color.css">
-	<link rel="stylesheet" href="css/responsive.css">
-	<script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-auth.js"></script>
-   li
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	
+
 </head>
 <body>
-<!--<div class="se-pre-con"></div>-->
-<div class="theme-layout">
-	<div class="container-fluid pdng0">
-		<div class="row merged">
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-				<div class="land-featurearea">
-					<div class="land-meta">
-						<h1>Acada</h1>
-						<p>
-							Acada is free to use for as as long as you are a Student.
-						</p>
-						<div class="friend-logo">
-							<span><img src="resorces\images\logo.jpg" alt="avart image"></span>
-						</div>
-						<a href="#" title="" class="folow-me">Follow Us on</a>
-					</div>	
-				</div>
-			</div>
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-				<div class="login-reg-bg">
-					<div class="log-reg-area sign">
-						<h2 class="log-title">Login</h2>
-							<p>
-								Don’t use Acada Yet? <a href="#" title="">Take the tour</a> or <a href="#" title="">Join now</a>
-							</p>
-						<form method="post">
-							<div class="form-group">	
-							  <input type="text" id="email_login" required="required"/>
-							  <label class="control-label" for="email_login">Email </label><i class="mtrl-select"></i>
-							</div>
-							<div class="form-group">	
-							  <input type="password" id="password_login" required="required"/>
-							  <label class="control-label" for="input">Password</label><i class="mtrl-select"></i>
-							</div>
-							<div class="checkbox">
-							  <label>
-								<input type="checkbox" checked="checked"/><i class="check-box"></i>Always Remember Me.
-							  </label>
-							</div>
-							<a href="#" title="" class="forgot-pwd">Forgot Password?</a>
-							<div class="submit-btns">
-								<button class="mtr-btn signin" id="signin" type="button"><span>Login</span></button>
-								<button class="mtr-btn signup" id="signup" type="button"><span>Register</span></button>
-							</div>
-						</form>
-					</div>
-					
-				</div>
-			</div>
+
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<a class="navbar-brand" href="#">ACADA</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		  <span class="navbar-toggler-icon"></span>
+		</button>
+	  
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		  <ul class="navbar-nav mr-auto">
+			<li class="nav-item active">
+			  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+			</li>
+			<li class="nav-item">
+			  <a class="nav-link" href="#">Past Papers</a>
+			</li>
+			<li class="nav-item dropdown">
+			  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+				Dropdown
+			  </a>
+			  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				<a class="dropdown-item" href="#">Action</a>
+				<a class="dropdown-item" href="#">Another action</a>
+				<div class="dropdown-divider"></div>
+				<a class="dropdown-item" href="#">Something else here</a>
+			  </div>
+			</li>
+			<li class="nav-item">
+			  <a class="nav-link disabled" href="#">Disabled</a>
+			</li>
+		  </ul>
+		  <form class="form-inline my-2 my-lg-0">
+			<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+		  </form>
 		</div>
+	  </nav>
+
+
+
+<!-- login -->
+<form method="post">
+	<div class="form-group">	
+	  <input type="text" id="email_login" required="required"/>
+	  <label class="control-label" for="email_login">Email </label><i class="mtrl-select"></i>
 	</div>
-</div>
+	<div class="form-group">	
+	  <input type="password" id="password_login" required="required"/>
+	  <label class="control-label" for="input">Password</label><i class="mtrl-select"></i>
+	</div>
+	<div class="checkbox">
+	  <label>
+		<input type="checkbox" checked="checked"/><i class="check-box"></i>Always Remember Me.
+	  </label>
+	</div>
+	<a href="#" title="" class="forgot-pwd">Forgot Password?</a>
+	<div class="submit-btns">
+		<button class="mtr-btn signin" id="signin" type="button"><span>Login</span></button>
+		<button class="mtr-btn signup" id="signup" type="button"><span>Register</span></button>
+	</div>
+</form>
 
 <script src="js/login.js"></script>
 	

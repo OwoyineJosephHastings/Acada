@@ -1,1 +1,105 @@
-var submitbtn=document.getElementById("submit_btn"),progress_value=document.getElementById("progress-bar"),semester=document.getElementById("semester").value,year=document.getElementById("year").value,document_type=document.getElementById("document_type").value,course_code=document.getElementById("course_code").value,firebaseConfig={apiKey:"AIzaSyDzcaQsMg9-3vSzg8ekuOxdMg9OuG_oEzo",authDomain:"ssn-project-b13d6.firebaseapp.com",projectId:"ssn-project-b13d6",storageBucket:"ssn-project-b13d6.appspot.com",messagingSenderId:"743494701844",appId:"1:743494701844:web:359881ba2bbb5279efa801"};firebase.initializeApp(firebaseConfig),submitbtn.addEventListener("click",function(){var e=document.querySelector("#file_input"),t=document.getElementById("file_name").value;if(""!==t){var a=firebase.storage().ref("university/makerere/cedat/school of engineering/mechanical engineering/"+year+"/"+semester+"/"+course_code+"/"+document_type+"/"+e.files[0].name).put(e.files[0]);a.on("state_changed",e=>{var t=e.bytesTransferred/e.totalBytes*100;switch(progress_value.style.width=t.toString()+"%",progress_value.innerHTML=Math.round(t).toString()+"%",e.state){case firebase.storage.TaskState.PAUSED:alert("Upload is paused");break;case firebase.storage.TaskState.RUNNING:}},e=>{alert("error occurred during upload")},()=>{a.snapshot.ref.getDownloadURL().then(a=>{console.log("File available at",a);var r=firebase.database().ref("university/makerere/cedat/school of engineering/mechanical engineering/"+year+"/"+semester+"/"+course_code+"/"+document_type+"/"+t).set({name:e.files[0].name,download_link:a});r.catch(e=>{alert(e.message())}),r.then(e=>{alert("Successfully Uploaded \n Thank you!"),progress_value.style.width="0%",progress_value.innerHTML=""})})})}else alert("please fill in the name of the of the file without punctuation marks and keep it short and simple ")});
+// ----------firebase initialise-----------------
+var submitbtn = document.getElementById("submit_btn");
+
+var firebaseConfig = {
+  apiKey: "AIzaSyDzcaQsMg9-3vSzg8ekuOxdMg9OuG_oEzo",
+  authDomain: "ssn-project-b13d6.firebaseapp.com",
+  projectId: "ssn-project-b13d6",
+  storageBucket: "ssn-project-b13d6.appspot.com",
+  messagingSenderId: "743494701844",
+  appId: "1:743494701844:web:359881ba2bbb5279efa801",
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+// --------- firebase authorisation--------------
+
+submitbtn.addEventListener("click", function () {
+  var progress_value = document.getElementById("progress-bar");
+  var semester = document.getElementById("semester").value;
+  var year = document.getElementById("year").value;
+  var document_type = document.getElementById("document_type").value;
+  var course_code = document.getElementById("course_code").value;
+
+  var input = document.querySelector("#file_input");
+  var file_name = document.getElementById("file_name").value;
+
+  if (file_name !== "") {
+    const storageRef = firebase
+      .storage()
+      .ref(
+        "university/makerere/cedat/school of engineering/mechanical engineering/" +
+          year +
+          "/" +
+          semester +
+          "/" +
+          course_code +
+          "/" +
+          document_type +
+          "/" +
+          input.files[0].name
+      );
+
+    var uploadTask = storageRef.put(input.files[0]);
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        // Observe state change events such as progress, pause, and resume
+        // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+        var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        progress_value.style.width = progress.toString() + "%";
+        progress_value.innerHTML = Math.round(progress).toString() + "%";
+        switch (snapshot.state) {
+          case firebase.storage.TaskState.PAUSED: // or 'paused'
+            alert("Upload is paused");
+            break;
+          case firebase.storage.TaskState.RUNNING: // or 'running'
+            // do something while upload state running
+            break;
+        }
+      },
+      (error) => {
+        alert("error occurred during upload");
+      },
+      () => {
+        // Handle successful uploads on complete
+        // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+        uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+          console.log("File available at", downloadURL);
+          var promise = firebase
+            .database()
+            .ref(
+              "university/makerere/cedat/school of engineering/mechanical engineering/" +
+                year +
+                "/" +
+                semester +
+                "/" +
+                course_code +
+                "/" +
+                document_type +
+                "/" +
+                file_name
+            )
+            .set({
+              name: input.files[0].name,
+              download_link: downloadURL,
+            });
+
+          promise.catch((e) => {
+            alert(e.message());
+          });
+          promise.then((e) => {
+            // successful upload to the database
+            alert("Successfully Uploaded \n Thank you!");
+            progress_value.style.width = "0%";
+            progress_value.innerHTML = "";
+          });
+        });
+      }
+    );
+  } else {
+    alert(
+      "please fill in the name of the of the file without punctuation marks and keep it short and simple "
+    );
+  }
+});
