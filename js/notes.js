@@ -46,6 +46,9 @@ function loadNotes() {
     .then((e) => {
       showNotes(resourceDocs);
       loadbtn.removeAttribute("disabled");
+      document.getElementById(
+        "selector"
+      ).innerHTML = `<button  class="btn-outline-success" role="button"><a href="notes.html" role="button">BACK NOTES</a></button>`;
     });
 }
 
@@ -82,6 +85,4 @@ loadbtn.addEventListener("click", (e) => {
   resourceDocs = [];
   e.preventDefault();
   loadNotes();
-
-  //showNotes(resourceDocs);
 });
