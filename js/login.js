@@ -28,6 +28,7 @@ function signin() {
 
 var signinbtn = document.getElementById("signin");
 var signupbtn = document.getElementById("signup");
+var cancelbtn = document.getElementById("cancel");
 signinbtn.addEventListener("click", (e) => {
   e.preventDefault();
   signin();
@@ -35,4 +36,9 @@ signinbtn.addEventListener("click", (e) => {
 signupbtn.addEventListener("click", (e) => {
   e.preventDefault();
   window.location = "register.html";
+});
+
+cancelbtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  window.location = "index.html";
 });
