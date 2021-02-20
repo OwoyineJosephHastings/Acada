@@ -6,6 +6,7 @@ var firebaseConfig = {
   messagingSenderId: "743494701844",
   appId: "1:743494701844:web:359881ba2bbb5279efa801",
 };
+
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
@@ -41,7 +42,6 @@ function loadNotes() {
         var childData = childSnapshot.val();
         resourceDocs.push(childData);
       });
-      console.log(resourceDocs);
     })
     .then((e) => {
       showNotes(resourceDocs);
@@ -63,16 +63,18 @@ function showNotes(resourceDocs) {
   htmlTemplate = ``;
   $htmlWrapper.innerHTML = ``;
   resourceDocs.forEach((resourceDoc) => {
-    htmlTemplate += `<div class="card" style="width: 18rem;">
-    <img class="card-img-top" width="50rem" height="70rem" src="resorces/images/PDF_file_icon.svg" alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">${
-        year + "," + semester + "," + course_code + "," + resource
-      }</h5>
-      <p class="card-text">${resourceDoc.name}</p>
-      <a href="${
-        resourceDoc.download_link
-      }" class="btn btn-primary">Download</a>
+    htmlTemplate += `<div class="card" style="width: 18rem; display: flex;">
+    <img class="card-img-top" width="50rem" height="40rem" src="resorces/images/PDF_file_icon.svg" alt="Card image cap">
+    <h5 class="card-title">${
+      year + "," + semester + "," + course_code + "," + resource
+    }</h5>
+    <div class="card-body" style= "display-flex;">
+    <p class="card-text">${resourceDoc.name}</p>
+    <p class="card-text">${resourceDoc.downloads} downloads</p>
+      
+      <a id =${resourceDoc.uplodedAt} href="${
+      resourceDoc.download_link
+    }" class="btn btn-primary}" >Download</a>
     </div>
   </div>`;
   });
@@ -86,3 +88,7 @@ loadbtn.addEventListener("click", (e) => {
   e.preventDefault();
   loadNotes();
 });
+
+function updateDounload() {
+  console.log("success");
+}

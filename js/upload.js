@@ -23,8 +23,18 @@ submitbtn.addEventListener("click", function () {
 
   var input = document.querySelector("#file_input");
   var file_name = document.getElementById("file_name").value;
-
-  if (file_name !== "") {
+  const allowedTypes = [
+    "application/pdf",
+    "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+    "application/docx",
+    "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+  ];
+  if (
+    file_name &&
+    input.files[0] &&
+    allowedTypes.includes(input.files[0].type)
+  ) {
+    console.log(input.files[0].type);
     const storageRef = firebase
       .storage()
       .ref(
@@ -100,7 +110,8 @@ submitbtn.addEventListener("click", function () {
     );
   } else {
     alert(
-      "please fill in the name of the of the file without punctuation marks and keep it short and simple "
+      "File Name can not have punctuation marks  \n and choose allowed file types:\n " +
+        allowedTypes
     );
   }
 });
